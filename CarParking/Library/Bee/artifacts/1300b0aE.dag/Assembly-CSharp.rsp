@@ -358,6 +358,7 @@
 "Assets/Script/Araba.cs"
 "Assets/Script/GameManager.cs"
 "Assets/Script/LevelYukle.cs"
+"Assets/Script/On_Parking.cs"
 -langversion:9.0
 /deterministic
 /optimize+

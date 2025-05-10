@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     [Header("ARABA AYARLAR")]
     public GameObject[] Arabalar;
-    public GameObject DurusNoktasi;
     public int KacArabaOlsun;
     int KalanAracSayisiDegeri;
     int AktifAracIndex;
@@ -26,11 +26,15 @@ public class GameManager : MonoBehaviour
     public GameObject Platform_1;
     public GameObject Platform_2;
     public float[] DonusHizlari;
+    bool DonusVarmi;
 
     [Header("Level AYARLAR")]
     public int ElmasSayisi;
+    public ParticleSystem CarpmaEfekti;
+    public AudioSource[] Sesler;
     void Start()
     {
+        DonusVarmi = true;
         VarSayilanDegerleriKontrolEt();
 
         KalanAracSayisiDegeri = KacArabaOlsun;
@@ -45,7 +49,6 @@ public class GameManager : MonoBehaviour
 
     public void YeniArabaGetir()
     {
-        DurusNoktasi.SetActive(true);
         KalanAracSayisiDegeri--;
         if (AktifAracIndex < KacArabaOlsun)
         {
@@ -74,8 +77,8 @@ public class GameManager : MonoBehaviour
             Paneller[0].SetActive(false);
         }
 
-
-        Platform_1.transform.Rotate(new Vector3(0, 0, -DonusHizlari[0]), Space.Self);
+        if (DonusVarmi)
+            Platform_1.transform.Rotate(new Vector3(0, 0, -DonusHizlari[0]), Space.Self);
     }
 
     void Kazandin()
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
         Textler[3].text = SceneManager.GetActiveScene().name;
         Textler[4].text = (KacArabaOlsun - KalanAracSayisiDegeri).ToString();
         Textler[5].text = ElmasSayisi.ToString();
+        Sesler[2].Play();
 
         Paneller[1].SetActive(true);
         Invoke("KazandinButonuOrtayaCikart", 2f);
@@ -102,11 +106,13 @@ public class GameManager : MonoBehaviour
 
     public void Kaybettin()
     {
-        PlayerPrefs.SetInt("Elmas", PlayerPrefs.GetInt("Elmas") + ElmasSayisi);
+        DonusVarmi = false;
         Textler[6].text = PlayerPrefs.GetInt("Elmas").ToString();
         Textler[7].text = SceneManager.GetActiveScene().name;
         Textler[8].text = (KacArabaOlsun - KalanAracSayisiDegeri).ToString();
         Textler[9].text = ElmasSayisi.ToString();
+        Sesler[1].Play();
+        Sesler[3].Play();
 
 
         Paneller[2].SetActive(true);
@@ -115,9 +121,7 @@ public class GameManager : MonoBehaviour
 
 
 
-
     // BELLEK YÖNETÝMÝ
-
     void VarSayilanDegerleriKontrolEt()
     {
         if (!PlayerPrefs.HasKey("Elmas"))

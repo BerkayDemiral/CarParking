@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Araba : MonoBehaviour
@@ -10,6 +11,7 @@ public class Araba : MonoBehaviour
     public GameObject[] Tekerizleri;
     public Transform parent;
     public GameManager _GameManager;
+    public GameObject ParcPoint;
 
 
 
@@ -25,37 +27,57 @@ public class Araba : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.CompareTag("DurusNoktasi"))
+        
+         if (collision.gameObject.CompareTag("Parking"))
         {
-            DurusNoktasiDurumu = true;
-            _GameManager.DurusNoktasi.SetActive(false);
-        }
-        else if (collision.gameObject.CompareTag("Parking"))
-        {
-            ilerle = false;
-            Tekerizleri[0].SetActive(false);
-            Tekerizleri[1].SetActive(false);
+            ArabaTeknik›slemi();
             transform.SetParent(parent);
-
             _GameManager.YeniArabaGetir();
         }
 
-        else if (collision.gameObject.CompareTag("OrtaGobek"))
-        {
-            Destroy(gameObject);
-            _GameManager.Kaybettin();
-        }
+        
         
         else if (collision.gameObject.CompareTag("Araba"))
         {
-            Destroy(gameObject);
+            _GameManager.CarpmaEfekti.transform.position = ParcPoint.transform.position;
+            _GameManager.CarpmaEfekti.Play();
+            ArabaTeknik›slemi();
             _GameManager.Kaybettin();
         }
-        else if (collision.gameObject.CompareTag("Elmas"))
-        {
-            collision.gameObject.SetActive(false);
-            _GameManager.ElmasSayisi++;
-        }
 
+
+    }
+
+    void ArabaTeknik›slemi()
+    {
+        ilerle = false;
+        Tekerizleri[0].SetActive(false);
+        Tekerizleri[1].SetActive(false);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DurusNoktasi"))
+        {
+            DurusNoktasiDurumu = true;
+        }
+        else if (other.CompareTag("Elmas"))
+        {
+            other.gameObject.SetActive(false);
+            _GameManager.ElmasSayisi++;
+            _GameManager.Sesler[0].Play();
+        }
+        else if (other.CompareTag("OrtaGobek"))
+        {
+            _GameManager.CarpmaEfekti.transform.position = ParcPoint.transform.position;
+            _GameManager.CarpmaEfekti.Play();
+            ArabaTeknik›slemi();
+            _GameManager.Kaybettin();
+        }
+        else if (other.CompareTag("On_Parking"))
+        {
+            other.gameObject.GetComponent<On_Parking>().Parking.SetActive(true);
+        }
     }
 }
