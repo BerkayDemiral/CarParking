@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+ 
 
 public class GameManager : MonoBehaviour
 {
@@ -26,24 +27,28 @@ public class GameManager : MonoBehaviour
     public GameObject Platform_1;
     public GameObject Platform_2;
     public float[] DonusHizlari;
+    public bool YukselecekPlatformVarmi;
     bool DonusVarmi;
 
     [Header("Level AYARLAR")]
     public int ElmasSayisi;
     public ParticleSystem CarpmaEfekti;
     public AudioSource[] Sesler;
+    bool DokunmaKilidi;
+    
     void Start()
     {
+        DokunmaKilidi= true;
         DonusVarmi = true;
         VarSayilanDegerleriKontrolEt();
 
         KalanAracSayisiDegeri = KacArabaOlsun;
 
-        /*KalanAracSayisi.text = KalanAracSayisiDegeri.ToString();
+        //KalanAracSayisi.text = KalanAracSayisiDegeri.ToString();
         for (int i = 0; i < KacArabaOlsun; i++)
         {
             ArabaCanvasGorselleri[i].SetActive(true);
-        }*/
+        }
 
     }
 
@@ -60,13 +65,36 @@ public class GameManager : MonoBehaviour
         }
 
 
-        /*ArabaCanvasGorselleri[AktifAracIndex - 1].GetComponent<Image>().sprite = AracGeldiGorseli;
-        KalanAracSayisi.text = KalanAracSayisiDegeri.ToString();*/
+        ArabaCanvasGorselleri[AktifAracIndex-1].GetComponent<UnityEngine.UI.Image>().sprite = AracGeldiGorseli;
+        //KalanAracSayisi.text = KalanAracSayisiDegeri.ToString();
     }
 
 
     void Update()
     {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (DokunmaKilidi)
+                {
+                    Paneller[0].SetActive(false);
+                    Paneller[3].SetActive(true);
+                    DokunmaKilidi = false;
+                }
+                else
+                {
+                    Arabalar[AktifAracIndex].GetComponent<Araba>().ilerle = true;
+                    AktifAracIndex++;
+                }
+
+            }
+
+        }
+
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             Arabalar[AktifAracIndex].GetComponent<Araba>().ilerle = true;
@@ -75,10 +103,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             Paneller[0].SetActive(false);
+            Paneller[3].SetActive(true);
         }
 
         if (DonusVarmi)
+        {
             Platform_1.transform.Rotate(new Vector3(0, 0, -DonusHizlari[0]), Space.Self);
+            if(Platform_2!=null)
+            Platform_2.transform.Rotate(new Vector3(0, 0, DonusHizlari[1]), Space.Self);
+        }
     }
 
     void Kazandin()
@@ -91,6 +124,7 @@ public class GameManager : MonoBehaviour
         Sesler[2].Play();
 
         Paneller[1].SetActive(true);
+        Paneller[3].SetActive(false);
         Invoke("KazandinButonuOrtayaCikart", 2f);
     }
 
@@ -116,23 +150,10 @@ public class GameManager : MonoBehaviour
 
 
         Paneller[2].SetActive(true);
+        Paneller[3].SetActive(false);
         Invoke("KaybettinButonuOrtayaCikart", 2f);
     }
 
-
-
-    // BELLEK YÖNETÝMÝ
-    void VarSayilanDegerleriKontrolEt()
-    {
-        if (!PlayerPrefs.HasKey("Elmas"))
-        {
-            PlayerPrefs.SetInt("Elmas", 0);
-            PlayerPrefs.SetInt("Level", 1);
-        }
-
-        Textler[0].text = PlayerPrefs.GetInt("Elmas").ToString();
-        Textler[1].text = SceneManager.GetActiveScene().name;
-    }
 
     public void izleVeDevamEt()
     {
@@ -154,4 +175,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // BELLEK YÖNETÝMÝ
+    void VarSayilanDegerleriKontrolEt()
+    {
+        Textler[0].text = PlayerPrefs.GetInt("Elmas").ToString();
+        Textler[1].text = SceneManager.GetActiveScene().name;
+    }
 }
