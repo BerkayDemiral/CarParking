@@ -96,8 +96,8 @@ MonoBehaviour:
     y: 0
     width: 506
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 91
+  controlID: 89
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 92
+  controlID: 90
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 672
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 16}
@@ -742,7 +742,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 0.9999912
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.22505209, y: -0.056651846, z: 0.013109301, w: 0.97256565}
     speed: 2
-    m_Value: {x: 0.22508124, y: -0.055195317, z: 0.012772261, w: 0.97269154}
+    m_Value: {x: -0.22505209, y: 0.056651846, z: -0.013109301, w: -0.97256565}
   m_Size:
     m_Target: 10
     speed: 2
@@ -820,7 +820,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ae1ff5ff0820f5ff6220f5ffbc20f5ff1621f5ffa821f5ff4824f5ff603cf5ff923ef5ff3041f5ff8a41f5ffa442f5fffa47f5ff9a4cf5ff744ef5ffb250f5ff1e52f5ff0e54f5ffd856f5ff885af5ff985df5ff4864f5fff866f5ff646af5ff3e6ef5fffe92f5ff5893f5ffac93f5ff0694f5ff6094f5ffba94f5ff1495f5ff6e95f5ffc895f5ff2496f5ff7e96f5ffd896f5ff3297f5ff8c97f5ffe697f5ff489af5ffc29cf5ff1c9df5ff9a9ef5ffa2a0f5fffca0f5ff56a1f5ffd0a2f5ff88a4f5ffe2a4f5ff3ca5f5ff96a5f5ff02adf5ff12b0f5ff82bcf5ffdac3f5ff74caf5ff380bf7ff6416f7ff1c71f7ffc671f7ff0a73f7ff727bf7ff66f7f7ff96f7f7ff9af7f7ffc6faf7ff0efdf7ff4cfff7ff7c01f8ff1c07f8ff1012f8ffa614f8ffdc17f8fff619f8ffa41bf8ffd4f4f8ffac45fcff3291fcff88c1fcff38cafcffee94ffff7cebffff94ebffffa4ebffffb4ebffffbcebffffc8ebffffb6f4ffff20fbffffa060000012650000aad20000d8d8000022d90000d2d900006cdd000074dd00007add000084dd000020de000024de000046de0000b61c0200361d0200163102001a3102005e330200de330200a4710200a0730200fa730200727402003e850200c6950200109602008e96020096960200b2960200c096020098a10200e6ab0200aeac0200d2ac0200e0ac0200a0fc0300eafc030084ff030074920400e296040072970400
+      m_ExpandedIDs: 7af5ffffc6f6ffffb4faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1065,17 +1065,16 @@ MonoBehaviour:
     m_FilterByTypeIntersection: 0
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets/FX
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Berkay\Desktop\Code\UnityProjeleri\CarParking
+  m_LastProjectPath: C:\Users\Berkay\Desktop\Code\GitUnityProject\CarParking\CarParking
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 45}
     m_SelectedIDs: 9c5f0000
     m_LastClickedID: 24476
-    m_ExpandedIDs: 00000000086000000a6000000c6000000e60000010600000126000001460000016600000
+    m_ExpandedIDs: 000000001e60000020600000226000002460000026600000286000002a6000002c6000002e600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1103,21 +1102,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000086000000c6000000e6000001060000012600000146000001660000040600000aa650000
+    m_ExpandedIDs: ffffffff000000001e60000020600000226000002460000026600000286000002a6000002e600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 2
-      m_OriginalName: 2
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 24696
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 2}
     m_SearchString: 
